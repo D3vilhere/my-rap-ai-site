@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Rap Generator</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: #fff;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    h1 {
+      font-size: 3rem;
+      color: #00ffe5;
+      text-shadow: 0 0 20px #00ffe5;
+    }
+    textarea {
+      width: 80%;
+      max-width: 600px;
+      height: 120px;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      margin: 20px 0;
+      font-size: 1rem;
+      outline: none;
+      resize: none;
+    }
+    button {
+      background: #00ffe5;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #ff0077;
+      box-shadow: 0 0 20px #ff0077;
+      color: #fff;
+    }
+    audio {
+      margin-top: 20px;
+      width: 80%;
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎤 AI Rap Generator</h1>
+  <p>Type your lyrics below & get AI Male/Female Rap with SFX</p>
+  
+  <textarea id="lyrics" placeholder="Type your rap lyrics here..."></textarea><br>
+  <button onclick="generateRap()">Generate Rap</button>
+
+  <audio id="player" controls></audio>
+
+  <footer>🔥 Created with AI by Ahsan 🔥</footer>
+
+  <script>
+    async function generateRap() {
+      const text = document.getElementById("lyrics").value;
+      if (!text) {
+        alert("Please type your rap lyrics first!");
+        return;
+      }
+
+      // 🔹 Demo: Free AI voices API (will generate sound)
+      const url = "https://api.voicerss.org/";
+      const apiKey = "demo"; // Replace with your free API key from VoiceRSS
+
+      const audioUrl = `${url}?key=${apiKey}&hl=en-us&v=Mary&src=${encodeURIComponent(text)}`;
+
+      document.getElementById("player").src = audioUrl;
+      document.getElementById("player").play();
+    }
+  </script>
+</body>
+</html>
